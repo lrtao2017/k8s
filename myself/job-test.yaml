@@ -1,0 +1,19 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+    name: job-test
+spec:
+    completions: 8
+    parallelism: 2
+    template:
+        metadata:
+            name: job-test
+        spec:
+            containers:
+            - name: for-loop
+              image: centos:yum
+              command: ["/bin/sh","-c"]
+              args:
+                - sleep 30
+            restartPolicy: Never
