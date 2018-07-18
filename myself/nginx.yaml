@@ -1,0 +1,27 @@
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+    name: nginx-deployment
+spec:
+    replicas: 3
+    template:
+        metadata:
+            labels:
+                app: nginx-test
+        spec:
+            containers:
+            - name: nginx
+              image: centos7.5:nginx-1.14.0
+              ports:
+              - containerPort: 80
+              volumeMounts:
+              - name: nginx-root
+                mountPath: /html/
+            #kubectl label node k8s-node1 disktype=use_node (Configure and use the label)
+            nodeSelector:
+                disktype: use_node
+            volumes:
+            - name: nginx-root
+              hostPath:
+                  path: /html
