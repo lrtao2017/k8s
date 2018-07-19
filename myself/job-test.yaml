@@ -4,7 +4,7 @@ kind: Job
 metadata:
     name: job-test
 spec:
-    completions: 8
+    completions: 20
     parallelism: 2
     template:
         metadata:
@@ -13,7 +13,8 @@ spec:
             containers:
             - name: for-loop
               image: centos:yum
-              command: ["/bin/sh","-c"]
-              args:
-                - sleep 30
+              command: ["echo","hello world! "]
+              #command: ["/bin/sh","-c"]
+              #args:
+              #  - sleep 30
             restartPolicy: Never
